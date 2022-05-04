@@ -3,7 +3,9 @@ const categoryList = document.querySelector('[data-category-list]')
 const categoryInput = document.querySelector('.input-category')
 const categoryBtn = document.querySelector('.btn-category')
 
-let exampleCategories = []
+// Local Storage Setup
+const LOCAL_STORAGE_CATEGORY_KEY = 'category.objects'
+let categoryObjects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_CATEGORY_KEY)) || []
 
 
 // Main Functions
@@ -11,21 +13,21 @@ let exampleCategories = []
 categoryForm.addEventListener("submit", e => {
     e.preventDefault()
     // if input is NULL, return and do not run program
-    if(inputChecker){
-        categoryInput.value = ''
-        console.log('There is no valid input!')
-        return
-    }
+    if(inputChecker(categoryInput.value)) return
+
+    // Main application logic starts here...
     const inputCategory = createCategoryObject(categoryInput)
-    exampleCategories.push(inputCategory)
+    categoryObjects.push(inputCategory)
     categoryInput.value = null
-    console.log(exampleCategories)
+    console.log(categoryObjects)
+    saveLocalStorage()
     renderOrganizer()
+    // saveLocalStorage()
 })
 
 function renderOrganizer(){
     clearContent(categoryList)
-    exampleCategories.forEach( category => {
+    categoryObjects.forEach( category => {
         let categoryElement = document.createElement('li')
         categoryElement.dataset.categoryId = category.categoryId
         categoryElement.innerText = category.categoryName
@@ -39,7 +41,6 @@ function createCategoryObject(categoryInput){
     const categoryId = generateId()
     return { categoryId, categoryName, tasks: []}
 }
-
 
 // Utility Functions
 
@@ -58,6 +59,10 @@ function clearContent(parentElement){
     while (parentElement.firstChild){
         parentElement.removeChild(parentElement.firstChild)
     }
+}
+
+function saveLocalStorage(){
+    localStorage.setItem(LOCAL_STORAGE_CATEGORY_KEY, JSON.stringify(categoryObjects))
 }
 
 renderOrganizer()
