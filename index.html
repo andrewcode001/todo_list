@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Document</title>
 </head>
 <body>
@@ -29,8 +30,9 @@
             <div class="tasks-todos">
                 <div class="tasks-header">
                     <h2>To-Do Tasks</h2>
+                    <p><span data-tasks-count></span> <span data-task-plural></span> Remaining</p>
                 </div>
-                <ul class="tasks-list">
+                <ul class="tasks-list" data-tasks-list>
                     <li>Task 1</li>
                     <li>Task 2</li>
                     <li>Task 3</li>
