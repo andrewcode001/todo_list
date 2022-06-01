@@ -1,3 +1,88 @@
-.active-category {
-    color: blue;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body {
+    background-color: rgb(110, 110, 207);
+    font-family: 'Roboto', sans-serif;
+}
+
+.task-organizer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 5rem;
+}
+
+.categories-header {
+    background-color: rgb(124, 124, 152);
+    width: 100%;
+    text-align: center;
+}
+
+.task-categories {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(203, 203, 254);
+    min-width: 20rem;
+    padding: 5px;
+    border-radius: 3px;
+    height:50vh;
+}
+
+.categories-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.tasks-header {
+    background-color: rgb(124, 124, 152);
+    width: 100%;
+    text-align: center;
+}
+
+.tasks-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.tasks-count {
+    margin-top: 2px;
+}
+
+.task-todos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(203, 203, 254);
+    min-width: 20rem;
+    padding: 5px;
+    border-radius: 3px;
+    height:50vh;
+}
+  
+.task-todos{
+    height: 50vh;
+}
+  .active-category {
+    color: blue;
+} 
+
+ul li {
+    list-style: none;   
+}
+
+
+

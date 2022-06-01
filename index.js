@@ -46,6 +46,7 @@ taskForm.addEventListener("submit", e => {
     console.log(selectedCategory.tasks)
 })
 
+
 categoryList.addEventListener("click", e => {
     if(e.target.tagName.toLowerCase()=== 'li'){
         // the click will extract the categoryId, then saves to local storage, re-renders with associated category highlighted
@@ -63,8 +64,10 @@ function renderOrganizer(){
     // This will access the selectedCategory based on the clicked selectedCategoryId local storage variable
     let selectedCategory = categoryObjects.find( category => category.categoryId === selectedCategoryId)
     if(selectedCategory == null){
+        taskForm.style.display = "none"
         console.log('There is no matching ID!')
     } else {
+        taskForm.style.display = "block"
         updateTasksHeaderWording(selectedCategory)
         renderTasksList(selectedCategory)
     }
@@ -101,7 +104,7 @@ function createCategoryObject(categoryInput){
 
 function updateTasksHeaderWording(selectedCategory){
     const taskCount = selectedCategory.tasks.length
-    taskCount >= 0 ? taskPlural.innerText = "Tasks" : taskPlural.innerText = "Task"
+    taskCount > 1 ? taskPlural.innerText = "Tasks Remaining" : taskPlural.innerText = "Task Remaining"
     taskCounter.innerText = taskCount
 }
 

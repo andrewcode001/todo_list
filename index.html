@@ -11,38 +11,47 @@
 
         <!-- Main container of the code -->
         <div class="task-organizer">
+
             <div class="task-categories">
-                <div class="catgories-header">
+                <div class="categories-header">
                     <h2>Task Categories</h2>
                 </div>
-                <ul data-category-list>
-                    <li>Category 1</li>
-                    <li>Category 2</li>
-                    <li>Category 3</li>
-                </ul>
-
-                <form class="category-form" data-category-form>
-                    <input class="input-category" input="text" placeholder="Enter Category" aria-label="Enter Category"/>
-                    <button class="btn-category" type="submit">Add Category</button>
-                </form>
+                <div class="categories-content">
+                    <div class="categories">
+                        <ul data-category-list>
+                           
+                        </ul>
+                    </div>
+                   
+                    <form class="category-form" data-category-form>
+                        <input class="input-category" input="text" placeholder="Enter Category" aria-label="Enter Category"/>
+                        <button class="btn-category" type="submit">Add Category</button>
+                    </form>
+                </div>
             </div>
     
-            <div class="tasks-todos">
+            <div class="task-todos">
                 <div class="tasks-header">
                     <h2>To-Do Tasks</h2>
-                    <p><span data-tasks-count></span> <span data-task-plural></span> Remaining</p>
+                    
                 </div>
-                <ul class="tasks-list" data-tasks-list>
-                    <li>Task 1</li>
-                    <li>Task 2</li>
-                    <li>Task 3</li>
-                </ul>
-
-                <form class="tasks-form" data-tasks-form>
-                    <input class="input-task" input="text" placeholder="Enter Task" aria-label="Enter Task"/>
-                    <button class="btn-task" type="submit">Add Task</button>
-                </form>
+                <div class="tasks-count">
+                    <h3><span data-tasks-count></span> <span data-task-plural></span></h3>
+                </div>
+                
+                <div class="tasks-content">
+                    <div class="todos">
+                        <ul class="tasks-list" data-tasks-list>
+                        
+                        </ul>
+                    </div>
+                    <form class="tasks-form" data-tasks-form>
+                        <input class="input-task" input="text" placeholder="Enter Task" aria-label="Enter Task"/>
+                        <button class="btn-task" type="submit">Add Task</button>
+                    </form>                        
+                </div>                    
             </div>
+
         </div>
     
     
