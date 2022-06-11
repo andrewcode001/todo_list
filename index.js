@@ -21,7 +21,17 @@ let categoryObjects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_CATEGORY_KEY
 let selectedCategoryId = localStorage.getItem(LOCAL_STORAGE_SELECTED_CATEGORY_KEY)
 let selectedTaskId = localStorage.getItem(LOCAL_STORAGE_SELECTED_TASK_KEY)
 
+
 // Event Listeners
+categoryList.addEventListener("click", e => {
+    if(e.target.tagName.toLowerCase()=== 'li'){
+        // the click will extract the categoryId, then saves to local storage, re-renders with associated category highlighted
+        selectedCategoryId = e.target.dataset.categoryId
+        saveLocalStorage()
+        renderOrganizer()
+    }
+})
+
 categoryForm.addEventListener("submit", e => {
     e.preventDefault()
     // if input is NULL, return and do not run program
@@ -39,27 +49,21 @@ categoryForm.addEventListener("submit", e => {
     // saveLocalStorage()
 })
 
-categoryList.addEventListener("click", e => {
-    if(e.target.tagName.toLowerCase()=== 'li'){
-        // the click will extract the categoryId, then saves to local storage, re-renders with associated category highlighted
-        selectedCategoryId = e.target.dataset.categoryId
-        saveLocalStorage()
-        
-        renderOrganizer()
-    }
-})
-
-
 removeCategoryBtn.addEventListener("click", e => {
-    let selectedCategory = categoryObjects.find( category => category.categoryId === selectedCategoryId)
-    // LEFT OFF HERE // task removal complete
+    //must run renderOrganizer to create the categoryObject list first to initiaite the SelectedCategoryID to null
+    renderOrganizer()
+    if(selectedCategoryId == null){
+        console.log("no id YET")
+        return
+    }
+
     categoryObjects = categoryObjects.filter( category => category.categoryId !== selectedCategoryId)
+    console.log(categoryObjects)
     selectedCategoryId = null
     saveLocalStorage()
-    clearContent(tasksList)
-    updateTasksHeaderWording(selectedCategory)
     renderOrganizer()
 
+  
 })
 
 tasksList.addEventListener("click", e =>{
@@ -106,9 +110,11 @@ function renderOrganizer(){
     let selectedCategory = categoryObjects.find( category => category.categoryId === selectedCategoryId)
     if(selectedCategory == null){
         taskForm.style.display = "none"
+        taskCountContainer.style.display = "none"
         console.log('There is no matching ID!')
     } else {
         taskForm.style.display = "block"
+        taskCountContainer.style.display = "block"
         updateTasksHeaderWording(selectedCategory)
         renderTasksList(selectedCategory)
     }
@@ -149,10 +155,7 @@ function createTaskObject(task){
 
 // Utility Functions
 
-function updateTasksHeaderWording(selectedCategory){
-    if(selectedCategoryId == null){
-        taskCountContainer.innerText = ''
-    }
+function updateTasksHeaderWording(selectedCategory){ 
     const taskCount = selectedCategory.tasks.length
     taskCount > 1 ? taskPlural.innerText = "Tasks Remaining" : taskPlural.innerText = "Task Remaining"
     taskCounter.innerText = taskCount
